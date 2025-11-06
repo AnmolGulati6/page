@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaEnvelope, FaLinkedin, FaGithub } from 'react-icons/fa';
-import { SiArxiv } from 'react-icons/si';
+import { SiGooglescholar } from 'react-icons/si';
 
 const Contact = () => {
   return (
@@ -60,14 +60,14 @@ const Contact = () => {
                 </a>
 
                 <a
-                  href='https://arxiv.org/search/?query=Anmol+Gulati&searchtype=author'
+                  href='https://scholar.google.com/citations?hl=en&user=2l0cGNgAAAAJ'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='flex items-center gap-4 p-4 bg-[#0a192f] rounded-lg hover:bg-[#1e3a5f] transition-all duration-300 group'
                 >
-                  <SiArxiv className='text-red-500 text-2xl group-hover:scale-110 transition-transform' />
+                  <SiGooglescholar className='text-blue-500 text-2xl group-hover:scale-110 transition-transform' />
                   <div>
-                    <p className='text-gray-400 text-sm'>arXiv</p>
+                    <p className='text-gray-400 text-sm'>Google Scholar</p>
                     <p className='text-white font-medium'>Research Publications</p>
                   </div>
                 </a>
