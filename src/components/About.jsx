@@ -45,7 +45,9 @@ const About = () => {
               
               <p className='text-lg text-gray-300 leading-relaxed'>
                 Beyond my technical work, I channel my drive for excellence both intellectually and physically through 
-                my passion for <span className='text-pink-500 font-semibold'>bodybuilding</span>, embodying a commitment 
+                my passion for <span className='text-pink-500 font-semibold'>bodybuilding</span>, 
+                <span className='text-pink-500 font-semibold'> running</span>, and 
+                <span className='text-pink-500 font-semibold'> Brazilian Jiu Jitsu</span>, embodying a commitment 
                 to continuous improvement in all aspects of life.
               </p>
             </div>
