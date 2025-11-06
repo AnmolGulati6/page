@@ -11,11 +11,11 @@ const Skills = () => {
     { name: 'RAG Systems', icon: '🔍', category: 'Core AI' },
     { name: 'LangChain', icon: '⛓️', category: 'Frameworks' },
     { name: 'Embeddings', icon: '📊', category: 'Core AI' },
-    { name: 'Semantic Search', icon: '🎯', category: 'Core AI' },
+    { name: 'AI Agents', icon: '🎭', category: 'Core AI' },
     { name: 'Python', icon: Python, category: 'Languages', isImage: true },
     { name: 'Model Context Protocol', icon: '🔌', category: 'Infrastructure' },
     { name: 'API Development', icon: '⚡', category: 'Infrastructure' },
-    { name: 'Agent Orchestration', icon: '🎭', category: 'Core AI' },
+    { name: 'Agent Orchestration', icon: '🤝', category: 'Core AI' },
   ];
 
   return (
