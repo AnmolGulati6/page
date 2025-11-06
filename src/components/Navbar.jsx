@@ -6,6 +6,7 @@ import {
   FaLinkedin,
 } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
+import { SiGooglescholar } from 'react-icons/si';
 import Logo from '../assets/logo2.png';
 import { Link } from 'react-scroll';
 
@@ -118,6 +119,16 @@ const Navbar = () => {
               href='mailto:agulati101@gmail.com'
             >
               Email <HiOutlineMail size={30} />
+            </a>
+          </li>
+          <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#4285f4]'>
+            <a
+              className='flex justify-between items-center w-full text-gray-300'
+              href='https://scholar.google.com/citations?hl=en&user=2l0cGNgAAAAJ'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              Scholar <SiGooglescholar size={30} />
             </a>
           </li>
         </ul>
