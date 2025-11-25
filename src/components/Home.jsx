@@ -15,23 +15,26 @@ const Home = () => {
       }}
     >
       {/* Container */}
-      <div className='max-w-[1000px] mx-auto px-8 flex flex-col justify-center h-full'>
+      <div className='max-w-[1000px] mx-auto pl-0 pr-8 flex flex-col justify-center h-full'>
         <p className='text-pink-600'></p>
-        <h1 className='text-4xl sm:text-7xl font-bold text-[#ffffff]'
-          style={{ marginBottom: '0px', marginTop: '300px'}}
+        <h1 className='text-5xl sm:text-7xl lg:text-8xl font-bold text-[#ffffff]'
+          style={{ marginBottom: '10px', marginTop: '300px'}}
         >
           ANMOL GULATI
         </h1>
-        <p className='font-bold text-[#ffffff] py-4 max-w-[700px]'>
-          AI Researcher & Engineer @ PwC
+        <p className='text-2xl sm:text-3xl font-bold text-[#ffffff] mt-4'>
+          AI Researcher & Engineer
+        </p>
+        <p className='text-xl font-bold text-[#ffffff] mt-2'>
+          @ PwC · Silicon Valley
         </p>
         <div>
           <li>
             <Link to='work' smooth={true} duration={500}>
-              <button className='text-white group border-2 px-6 py-3 my-2 flex items-center hover:bg-black hover:border-black'>
+              <button className='text-white text-lg group border-2 px-8 py-4 my-2 mt-8 flex items-center hover:bg-black hover:border-black'>
                 View Research
                 <span className='group-hover:rotate-90 duration-300'>
-                  <HiArrowNarrowRight className='ml-3 ' />
+                  <HiArrowNarrowRight className='ml-3' size={20} />
                 </span>
               </button>
             </Link>
