@@ -45,9 +45,7 @@ const About = () => {
               
               <p className='text-lg text-gray-300 leading-relaxed'>
                 Beyond my technical work, I channel my drive for excellence both intellectually and physically through 
-                my passion for <span className='text-pink-500 font-semibold'>bodybuilding</span>, 
-                <span className='text-pink-500 font-semibold'> running</span>, and 
-                <span className='text-pink-500 font-semibold'> Brazilian Jiu Jitsu</span>, embodying a commitment 
+                my passion for <span className='text-pink-500 font-semibold'>bodybuilding</span>, embodying a commitment 
                 to continuous improvement in all aspects of life.
               </p>
             </div>
@@ -55,7 +53,7 @@ const About = () => {
             {/* Stats or Highlights */}
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mt-8'>
               <div className='bg-[#112240] rounded-xl p-6 text-center border border-pink-600/30 hover:border-pink-600 transition-all duration-300 transform hover:scale-105'>
-                <p className='text-4xl font-bold text-pink-500 mb-2'>4+</p>
+                <p className='text-4xl font-bold text-pink-500 mb-2'>5+</p>
                 <p className='text-gray-400 font-medium'>Research Publications</p>
               </div>
               <div className='bg-[#112240] rounded-xl p-6 text-center border border-purple-600/30 hover:border-purple-600 transition-all duration-300 transform hover:scale-105'>
