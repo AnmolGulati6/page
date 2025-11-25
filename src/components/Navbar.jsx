@@ -15,7 +15,7 @@ const Navbar = () => {
   const handleClick = () => setNav(!nav);
 
   return (
-    <div className='fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#0a192f] text-gray-300'
+    <div className='fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#0a192f] text-gray-300 z-50'
     >
       <div>
         <img src={Logo} alt='Logo Image' style={{ width: '80px' }} />
@@ -113,22 +113,22 @@ const Navbar = () => {
               Github <FaGithub size={30} />
             </a>
           </li>
+          <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#4285F4]'>
+            <a
+              className='flex justify-between items-center w-full text-gray-300'
+              href='https://scholar.google.com/citations?user=YOUR_ID'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              Scholar <SiGooglescholar size={30} />
+            </a>
+          </li>
           <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#6fc2b0]'>
             <a
               className='flex justify-between items-center w-full text-gray-300'
               href='mailto:agulati101@gmail.com'
             >
               Email <HiOutlineMail size={30} />
-            </a>
-          </li>
-          <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#4285f4]'>
-            <a
-              className='flex justify-between items-center w-full text-gray-300'
-              href='https://scholar.google.com/citations?hl=en&user=2l0cGNgAAAAJ'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              Scholar <SiGooglescholar size={30} />
             </a>
           </li>
         </ul>
