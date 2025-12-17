@@ -26,6 +26,8 @@ const About = () => {
                 I'm a Silicon Valley-based AI Researcher and Engineer at 
                 <span className='text-pink-500 font-semibold'> PwC</span>, where I focus on advancing 
                 the frontiers of artificial intelligence and developing cutting-edge solutions for enterprise applications.
+                I hold a <span className='text-pink-500 font-semibold'>B.S. with a double major in Computer Science & Data Science</span> from 
+                the <span className='text-pink-500 font-semibold'>University of Wisconsin-Madison</span>.
               </p>
               
               <p className='text-lg text-gray-300 leading-relaxed mb-6'>
@@ -53,7 +55,7 @@ const About = () => {
             {/* Stats or Highlights */}
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mt-8'>
               <div className='bg-[#112240] rounded-xl p-6 text-center border border-pink-600/30 hover:border-pink-600 transition-all duration-300 transform hover:scale-105'>
-                <p className='text-4xl font-bold text-pink-500 mb-2'>5+</p>
+                <p className='text-4xl font-bold text-pink-500 mb-2'>6+</p>
                 <p className='text-gray-400 font-medium'>Research Publications</p>
               </div>
               <div className='bg-[#112240] rounded-xl p-6 text-center border border-purple-600/30 hover:border-purple-600 transition-all duration-300 transform hover:scale-105'>
