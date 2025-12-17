@@ -116,7 +116,7 @@ const Navbar = () => {
           <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#4285F4]'>
             <a
               className='flex justify-between items-center w-full text-gray-300'
-              href='https://scholar.google.com/citations?user=YOUR_ID'
+              href='https://scholar.google.com/citations?hl=en&user=2l0cGNgAAAAJ'
               target='_blank'
               rel='noopener noreferrer'
             >
