@@ -1,6 +1,6 @@
 import React from 'react';
 import { researchPapers } from "../data/data.js";
-import { FaFilePdf, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaFilePdf, FaExternalLinkAlt, FaFileAlt } from 'react-icons/fa';
 import { SiArxiv } from 'react-icons/si';
 
 
@@ -74,8 +74,12 @@ const Work = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                   >
-                    <SiArxiv size={20} />
-                    View on arXiv
+                    {(paper.venue === "Preprint" || paper.arxivUrl.includes("preprints.org")) ? (
+                      <FaFileAlt size={20} />
+                    ) : (
+                      <SiArxiv size={20} />
+                    )}
+                    {paper.venue === "Preprint" || paper.arxivUrl.includes("preprints.org") ? "View on Preprints" : "View on arXiv"}
                     <FaExternalLinkAlt size={14} />
                   </a>
                   <a
