@@ -3,12 +3,12 @@ import { researchPapers } from "../data/data.js";
 import { FaExternalLinkAlt } from 'react-icons/fa';
 
 // Import research paper images
-import memtool from '../assets/research/memtool.png';
-import agentAsAGraph from '../assets/research/agent-as-a-graph.png';
-import scalemcp from '../assets/research/scalemcp.png';
-import toolSurvey from '../assets/research/tool survey.png';
-import toolToAgent from '../assets/research/tool-to-agent.png';
-import jackal from '../assets/research/jackal.png';
+import memtool from '../research/memtool.png';
+import agentAsAGraph from '../research/agent-as-a-graph.png';
+import scalemcp from '../research/scalemcp.png';
+import toolSurvey from '../research/tool survey.png';
+import toolToAgent from '../research/tool-to-agent.png';
+import jackal from '../research/jackal.png';
 
 // Map paper IDs to their images
 const paperImages = {
