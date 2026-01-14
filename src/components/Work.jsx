@@ -9,18 +9,91 @@ import scalemcp from '../research/scalemcp.png';
 import toolSurvey from '../research/tool survey.png';
 import toolToAgent from '../research/tool-to-agent.png';
 import jackal from '../research/jackal.png';
+import fromRowsToReasoning from "../research/from_rows_to_reasoning.png";
+import dontBreakTheCache from "../research/don't_break_the_cache.png";
 
 // Map paper IDs to their images
 const paperImages = {
-  1: memtool,
-  2: agentAsAGraph,
-  3: scalemcp,
-  4: toolSurvey,
-  5: toolToAgent,
-  6: jackal,
+  1: fromRowsToReasoning,
+  2: dontBreakTheCache,
+  3: memtool,
+  4: agentAsAGraph,
+  5: scalemcp,
+  6: toolSurvey,
+  7: jackal,
+  8: toolToAgent,
 };
 
+// Papers with conference venues (show venue badge)
+const conferenceVenuePapers = [3, 4, 5];
+
+const PaperCard = ({ paper, isFeatured = false }) => (
+  <div
+    className={`group bg-[#0d1b2a] rounded-xl border border-gray-700/50 hover:border-gray-600 transition-all duration-300 flex flex-col overflow-hidden ${isFeatured ? 'max-w-md' : ''}`}
+  >
+    {/* Image Header Area */}
+    <div className="h-44 bg-[#0a1421] flex items-center justify-center border-b border-gray-700/30 overflow-hidden">
+      <img
+        src={paperImages[paper.id]}
+        alt={paper.title}
+        className="w-full h-full object-contain p-2 transform group-hover:scale-105 transition-transform duration-300"
+      />
+    </div>
+
+    {/* Content Area */}
+    <div className="p-6 flex flex-col flex-1">
+      {/* Title */}
+      <h3 className="text-xl font-bold text-white mb-3 leading-tight line-clamp-3 group-hover:text-pink-400 transition-colors duration-300">
+        {paper.title}
+      </h3>
+
+      {/* Date */}
+      <p className="text-sm text-gray-400 mb-2">
+        {paper.date}
+      </p>
+
+      {/* Conference/Venue - for conference papers */}
+      {conferenceVenuePapers.includes(paper.id) && (
+        <p className="text-sm text-pink-400 font-medium mb-4">
+          {paper.venue}
+        </p>
+      )}
+      {!conferenceVenuePapers.includes(paper.id) && <div className="mb-2"></div>}
+
+      {/* Tags */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {paper.tags.slice(0, 3).map((tag, idx) => (
+          <span
+            key={idx}
+            className="bg-transparent text-gray-300 px-3 py-1 rounded-full text-xs font-medium border border-gray-600 hover:border-pink-500/50 hover:text-pink-400 transition-colors duration-200"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      {/* Spacer to push Read More to bottom */}
+      <div className="flex-1"></div>
+
+      {/* Read More Link */}
+      <a
+        href={paper.arxivUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 text-pink-500 hover:text-pink-400 font-medium transition-colors duration-200 group/link"
+      >
+        Read More
+        <FaExternalLinkAlt size={12} className="transform group-hover/link:translate-x-1 transition-transform duration-200" />
+      </a>
+    </div>
+  </div>
+);
+
 const Work = () => {
+  // Split papers: first 2 are featured, rest are in 3-column grid
+  const featuredPapers = researchPapers.slice(0, 2);
+  const remainingPapers = researchPapers.slice(2);
+
   return (
     <div name='work' className='w-full min-h-screen text-gray-300 bg-gradient-to-b from-[#0a192f] to-[#0f1f3d] py-20'>
       <div className='max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8'>
@@ -33,69 +106,17 @@ const Work = () => {
           </p>
         </div>
 
-        {/* Research Papers Grid - 3 columns */}
+        {/* Featured Papers Row - 2 papers centered */}
+        <div className="flex flex-col md:flex-row justify-center gap-6 mb-6">
+          {featuredPapers.map((paper) => (
+            <PaperCard key={paper.id} paper={paper} isFeatured={true} />
+          ))}
+        </div>
+
+        {/* Remaining Papers Grid - 3 columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {researchPapers.map((paper) => (
-            <div
-              key={paper.id}
-              className="group bg-[#0d1b2a] rounded-xl border border-gray-700/50 hover:border-gray-600 transition-all duration-300 flex flex-col overflow-hidden"
-            >
-              {/* Image Header Area */}
-              <div className="h-44 bg-[#0a1421] flex items-center justify-center border-b border-gray-700/30 overflow-hidden">
-                <img
-                  src={paperImages[paper.id]}
-                  alt={paper.title}
-                  className="w-full h-full object-contain p-2 transform group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-
-              {/* Content Area */}
-              <div className="p-6 flex flex-col flex-1">
-                {/* Title */}
-                <h3 className="text-xl font-bold text-white mb-3 leading-tight line-clamp-3 group-hover:text-pink-400 transition-colors duration-300">
-                  {paper.title}
-                </h3>
-
-                {/* Date */}
-                <p className="text-sm text-gray-400 mb-2">
-                  {paper.date}
-                </p>
-
-                {/* Conference/Venue - only for first 3 */}
-                {paper.id <= 3 && (
-                  <p className="text-sm text-pink-400 font-medium mb-4">
-                    {paper.venue}
-                  </p>
-                )}
-                {paper.id > 3 && <div className="mb-2"></div>}
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {paper.tags.slice(0, 3).map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-transparent text-gray-300 px-3 py-1 rounded-full text-xs font-medium border border-gray-600 hover:border-pink-500/50 hover:text-pink-400 transition-colors duration-200"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Spacer to push Read More to bottom */}
-                <div className="flex-1"></div>
-
-                {/* Read More Link */}
-                <a
-                  href={paper.arxivUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-pink-500 hover:text-pink-400 font-medium transition-colors duration-200 group/link"
-                >
-                  Read More
-                  <FaExternalLinkAlt size={12} className="transform group-hover/link:translate-x-1 transition-transform duration-200" />
-                </a>
-              </div>
-            </div>
+          {remainingPapers.map((paper) => (
+            <PaperCard key={paper.id} paper={paper} />
           ))}
         </div>
 
@@ -117,3 +138,4 @@ const Work = () => {
 };
 
 export default Work;
+
