@@ -11,6 +11,7 @@ import toolToAgent from '../research/tool-to-agent.png';
 import jackal from '../research/jackal.png';
 import fromRowsToReasoning from "../research/from_rows_to_reasoning.png";
 import dontBreakTheCache from "../research/don't_break_the_cache.png";
+import brtr from "../research/brtr.png";
 
 // Map paper IDs to their images
 const paperImages = {
@@ -22,10 +23,11 @@ const paperImages = {
   6: toolSurvey,
   7: jackal,
   8: toolToAgent,
+  9: brtr,
 };
 
 // Papers with conference venues (show venue badge)
-const conferenceVenuePapers = [3, 4, 5];
+const conferenceVenuePapers = [3, 4, 5, 6];
 
 const PaperCard = ({ paper, isFeatured = false }) => (
   <div
@@ -138,4 +140,3 @@ const Work = () => {
 };
 
 export default Work;
-
