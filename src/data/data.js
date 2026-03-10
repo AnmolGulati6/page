@@ -1,5 +1,16 @@
 export const researchPapers = [
     {
+        id: 9,
+        title: "Beyond Rows to Reasoning: Agentic Retrieval for Multimodal Spreadsheet Understanding and Editing",
+        authors: "Anmol Gulati, Sahil Sen, Waqar Sarguroh, Kevin Paul",
+        abstract: "We introduce Beyond Rows to Reasoning (BRTR), a multimodal agentic framework for spreadsheet understanding that replaces single-pass retrieval with an iterative tool-calling loop, supporting end-to-end Excel workflows from complex analysis to structured editing. Supported by over 200 hours of expert human evaluation, BRTR achieves state-of-the-art performance across three frontier spreadsheet understanding benchmarks, surpassing prior methods by 25 percentage points on FRTR-Bench, 7 points on SpreadsheetLLM, and 32 points on FINCH.",
+        arxivUrl: "https://arxiv.org/abs/2603.06503",
+        pdfUrl: "https://arxiv.org/pdf/2603.06503",
+        date: "March 2026",
+        tags: ["Multimodal", "Agentic RAG", "Spreadsheet Reasoning", "LLM"],
+        venue: "arXiv preprint",
+    },
+    {
         id: 1,
         title: "From Rows to Reasoning: A Retrieval-Augmented Multimodal Framework for Spreadsheet Understanding",
         authors: "Anmol Gulati, Sahil Sen, Waqar Sarguroh, Kevin Paul",
@@ -63,7 +74,7 @@ export const researchPapers = [
         pdfUrl: "https://www.preprints.org/manuscript/202512.1050/v1/download",
         date: "December 2025",
         tags: ["LLM", "Tool Selection", "Agent Selection", "Survey", "Production Systems"],
-        venue: "Preprint",
+        venue: "IEEE CAI 2026",
     },
     {
         id: 7,
