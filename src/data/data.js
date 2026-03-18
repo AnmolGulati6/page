@@ -11,6 +11,17 @@ export const researchPapers = [
         venue: "arXiv preprint",
     },
     {
+        id: 10,
+        title: "Chronos: Temporal-Aware Conversational Agents with Structured Event Retrieval for Long-Term Memory",
+        authors: "Sahil Sen, Elias Lumer, Anmol Gulati, Vamse Kumar Subbiah",
+        abstract: "We introduce Chronos, a novel temporal-aware memory framework that decomposes raw dialogue into subject-verb-object event tuples with resolved datetime ranges and entity aliases, indexing them in a structured event calendar alongside a turn calendar that preserves full conversational context. Chronos achieves 95.60% accuracy on LongMemEvalS, setting a new state of the art with a 7.67% improvement over the best prior system.",
+        arxivUrl: "https://arxiv.org/abs/2603.16862",
+        pdfUrl: "https://arxiv.org/pdf/2603.16862",
+        date: "March 2026",
+        tags: ["Long-Term Memory", "Conversational AI", "Temporal Reasoning", "LLM"],
+        venue: "arXiv preprint",
+    },
+    {
         id: 1,
         title: "From Rows to Reasoning: A Retrieval-Augmented Multimodal Framework for Spreadsheet Understanding",
         authors: "Anmol Gulati, Sahil Sen, Waqar Sarguroh, Kevin Paul",
