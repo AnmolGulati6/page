@@ -12,6 +12,8 @@ import jackal from '../research/jackal.png';
 import fromRowsToReasoning from "../research/from_rows_to_reasoning.png";
 import dontBreakTheCache from "../research/don't_break_the_cache.png";
 import brtr from "../research/brtr.png";
+import chronos from "../research/chronos.png";
+
 
 // Map paper IDs to their images
 const paperImages = {
@@ -24,6 +26,7 @@ const paperImages = {
   7: jackal,
   8: toolToAgent,
   9: brtr,
+  10: chronos,
 };
 
 // Papers with conference venues (show venue badge)
