@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { researchPapers } from "../data/data.js";
-import { FaExternalLinkAlt } from 'react-icons/fa';
+import { FaArrowRight, FaSortAmountDown, FaSortAmountUp } from 'react-icons/fa';
 
-// Import research paper images
 import memtool from '../research/memtool.png';
 import agentAsAGraph from '../research/agent-as-a-graph.png';
 import scalemcp from '../research/scalemcp.png';
@@ -13,9 +12,9 @@ import fromRowsToReasoning from "../research/from_rows_to_reasoning.png";
 import dontBreakTheCache from "../research/don't_break_the_cache.png";
 import brtr from "../research/brtr.png";
 import chronos from "../research/chronos.png";
+import agenticJackal from "../research/agentic_jackal.png";
+import askEarly from "../research/ask_early.png";
 
-
-// Map paper IDs to their images
 const paperImages = {
   1: fromRowsToReasoning,
   2: dontBreakTheCache,
@@ -27,102 +26,210 @@ const paperImages = {
   8: toolToAgent,
   9: brtr,
   10: chronos,
+  11: agenticJackal,
+  12: askEarly,
 };
 
-// Papers with conference venues (show venue badge)
-const conferenceVenuePapers = [3, 4, 5, 6];
+const conferenceVenuePapers = [1, 3, 4, 5, 6, 9];
 
-const PaperCard = ({ paper, isFeatured = false }) => (
-  <div
-    className={`group bg-[#0d1b2a] rounded-xl border border-gray-700/50 hover:border-gray-600 transition-all duration-300 flex flex-col overflow-hidden ${isFeatured ? 'max-w-md' : ''}`}
-  >
-    {/* Image Header Area */}
-    <div className="h-44 bg-[#0a1421] flex items-center justify-center border-b border-gray-700/30 overflow-hidden">
-      <img
-        src={paperImages[paper.id]}
-        alt={paper.title}
-        className="w-full h-full object-contain p-2 transform group-hover:scale-105 transition-transform duration-300"
-      />
-    </div>
+const CATEGORIES = ["All", "Agents", "Retrieval", "Multimodal", "Memory"];
 
-    {/* Content Area */}
-    <div className="p-6 flex flex-col flex-1">
-      {/* Title */}
-      <h3 className="text-xl font-bold text-white mb-3 leading-tight line-clamp-3 group-hover:text-pink-400 transition-colors duration-300">
-        {paper.title}
-      </h3>
+const PaperRow = ({ paper, isActive, onHover, onClick }) => {
+  const isConference = conferenceVenuePapers.includes(paper.id);
 
+  return (
+    <a
+      href={paper.arxivUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group flex items-center gap-4 py-4 px-4 border-b border-gray-700/40 cursor-pointer transition-all duration-200 ${
+        isActive
+          ? 'bg-[#112240]/80'
+          : 'hover:bg-[#112240]/50'
+      }`}
+      onMouseEnter={onHover}
+      onClick={onClick}
+    >
       {/* Date */}
-      <p className="text-sm text-gray-400 mb-2">
+      <div className="w-24 shrink-0 text-sm text-gray-500 font-medium">
         {paper.date}
-      </p>
-
-      {/* Conference/Venue - for conference papers */}
-      {conferenceVenuePapers.includes(paper.id) && (
-        <p className="text-sm text-pink-400 font-medium mb-4">
-          {paper.venue}
-        </p>
-      )}
-      {!conferenceVenuePapers.includes(paper.id) && <div className="mb-2"></div>}
-
-      {/* Tags */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        {paper.tags.slice(0, 3).map((tag, idx) => (
-          <span
-            key={idx}
-            className="bg-transparent text-gray-300 px-3 py-1 rounded-full text-xs font-medium border border-gray-600 hover:border-pink-500/50 hover:text-pink-400 transition-colors duration-200"
-          >
-            {tag}
-          </span>
-        ))}
       </div>
 
-      {/* Spacer to push Read More to bottom */}
-      <div className="flex-1"></div>
+      {/* Title + Authors */}
+      <div className="flex-1 min-w-0">
+        <h3 className={`font-semibold leading-snug transition-colors duration-200 line-clamp-1 ${
+          isActive ? 'text-pink-400' : 'text-gray-200 group-hover:text-pink-400'
+        }`}>
+          {paper.title}
+        </h3>
+        <p className="text-sm text-gray-500 mt-1 truncate">
+          {paper.authors}
+        </p>
+        {isConference && (
+          <span className="inline-block mt-1.5 text-xs font-semibold text-pink-400 bg-pink-500/10 border border-pink-500/20 px-2 py-0.5 rounded">
+            {paper.venue}
+          </span>
+        )}
+      </div>
 
-      {/* Read More Link */}
-      <a
-        href={paper.arxivUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 text-pink-500 hover:text-pink-400 font-medium transition-colors duration-200 group/link"
-      >
-        Read More
-        <FaExternalLinkAlt size={12} className="transform group-hover/link:translate-x-1 transition-transform duration-200" />
-      </a>
+      {/* Category */}
+      <div className="hidden md:flex items-center shrink-0 w-32 justify-end">
+        <span className="text-xs text-gray-400 truncate">
+          {paper.category}
+        </span>
+      </div>
+
+      {/* Arrow */}
+      <div className="shrink-0 w-8 flex justify-center">
+        <FaArrowRight
+          size={14}
+          className={`transition-all duration-200 ${
+            isActive
+              ? 'text-pink-400 translate-x-1'
+              : 'text-gray-600 group-hover:text-pink-400 group-hover:translate-x-1'
+          }`}
+        />
+      </div>
+    </a>
+  );
+};
+
+const FeaturedCard = ({ paper }) => {
+  if (!paper) return null;
+
+  return (
+    <div className="bg-[#0d1b2a] rounded-xl border border-gray-700/50 overflow-hidden transition-all duration-300">
+      <div className="bg-[#0a1421] flex items-center justify-center overflow-hidden aspect-[4/3]">
+        <img
+          src={paperImages[paper.id]}
+          alt={paper.title}
+          className="w-full h-full object-contain p-3"
+        />
+      </div>
+      <div className="p-5">
+        <h3 className="text-base font-bold text-white leading-snug mb-2">
+          {paper.title}
+        </h3>
+        <p className="text-sm text-gray-400 mb-3">
+          {paper.authors}
+        </p>
+        <div className="flex flex-wrap gap-1.5">
+          {paper.tags.slice(0, 3).map((tag, idx) => (
+            <span
+              key={idx}
+              className="text-xs text-gray-400 border border-gray-600/60 px-2 py-0.5 rounded-full"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Work = () => {
-  // Split papers: first 2 are featured, rest are in 3-column grid
-  const featuredPapers = researchPapers.slice(0, 2);
-  const remainingPapers = researchPapers.slice(2);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [hoveredPaperId, setHoveredPaperId] = useState(null);
+  const [sortAsc, setSortAsc] = useState(false);
+
+  const filteredPapers = useMemo(() => {
+    let papers = activeCategory === "All"
+      ? [...researchPapers]
+      : researchPapers.filter(p => p.category === activeCategory);
+
+    papers.sort((a, b) => {
+      const cmp = a.sortDate.localeCompare(b.sortDate);
+      return sortAsc ? cmp : -cmp;
+    });
+
+    return papers;
+  }, [activeCategory, sortAsc]);
+
+  const featuredPaper = hoveredPaperId
+    ? filteredPapers.find(p => p.id === hoveredPaperId) || filteredPapers[0]
+    : filteredPapers[0];
 
   return (
     <div name='work' className='w-full min-h-screen text-gray-300 bg-gradient-to-b from-[#0a192f] to-[#0f1f3d] py-20'>
       <div className='max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='pb-12 text-center'>
-          <p className='text-5xl font-bold text-gray-300 mb-4 border-b-4 border-pink-600 inline-block pb-2'>
-            Research Publications
+        {/* Header */}
+        <div className='pb-8'>
+          <p className='text-4xl sm:text-5xl font-bold text-gray-200 mb-4 tracking-tight'>
+            <span className="text-pink-500">[</span>RESEARCH<span className="text-pink-500">]</span>
           </p>
-          <p className='text-lg text-gray-400 mt-6 max-w-2xl mx-auto'>
-            Exploring cutting-edge research in Large Language Models, Multi-Agent Systems, and AI Infrastructure
+          <p className='text-base text-gray-400 max-w-xl leading-relaxed'>
+            Research papers and publications covering LLM agents, multimodal reasoning, benchmarks, and AI infrastructure.
           </p>
         </div>
 
-        {/* Featured Papers Row - 2 papers centered */}
-        <div className="flex flex-col md:flex-row justify-center gap-6 mb-6">
-          {featuredPapers.map((paper) => (
-            <PaperCard key={paper.id} paper={paper} isFeatured={true} />
+        {/* Category Filters */}
+        <div className="flex flex-wrap gap-2 mb-8">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => {
+                setActiveCategory(cat);
+                setHoveredPaperId(null);
+              }}
+              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                activeCategory === cat
+                  ? 'bg-pink-600 text-white shadow-lg shadow-pink-600/20'
+                  : 'border border-gray-600 text-gray-400 hover:border-pink-500/50 hover:text-pink-400'
+              }`}
+            >
+              {cat}
+            </button>
           ))}
         </div>
 
-        {/* Remaining Papers Grid - 3 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {remainingPapers.map((paper) => (
-            <PaperCard key={paper.id} paper={paper} />
-          ))}
+        {/* Main Content: Table + Featured Card */}
+        <div className="flex gap-8">
+          {/* Left: Paper Table */}
+          <div className="flex-1 min-w-0">
+            {/* Table Header */}
+            <div className="flex items-center gap-4 px-4 py-3 border-b border-gray-600/60 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              <button
+                onClick={() => setSortAsc(!sortAsc)}
+                className="w-24 shrink-0 flex items-center gap-1.5 hover:text-pink-400 transition-colors"
+              >
+                Date
+                {sortAsc
+                  ? <FaSortAmountUp size={10} />
+                  : <FaSortAmountDown size={10} />
+                }
+              </button>
+              <div className="flex-1">Title</div>
+              <div className="hidden md:block w-32 text-right">Category</div>
+              <div className="w-8"></div>
+            </div>
+
+            {/* Paper Rows */}
+            <div>
+              {filteredPapers.map((paper) => (
+                <PaperRow
+                  key={paper.id}
+                  paper={paper}
+                  isActive={featuredPaper?.id === paper.id}
+                  onHover={() => setHoveredPaperId(paper.id)}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              ))}
+            </div>
+
+            {filteredPapers.length === 0 && (
+              <div className="py-12 text-center text-gray-500">
+                No papers in this category yet.
+              </div>
+            )}
+          </div>
+
+          {/* Right: Featured Paper Card (hidden on mobile) */}
+          <div className="hidden lg:block w-80 shrink-0">
+            <div className="sticky top-24">
+              <FeaturedCard paper={featuredPaper} />
+            </div>
+          </div>
         </div>
 
         {/* Bottom CTA */}
