@@ -14,6 +14,7 @@ import brtr from "../research/brtr.png";
 import chronos from "../research/chronos.png";
 import agenticJackal from "../research/agentic_jackal.png";
 import askEarly from "../research/ask_early.png";
+import grepAllYouNeed from "../research/grep_all_you_need.png";
 
 const paperImages = {
   1: fromRowsToReasoning,
@@ -28,6 +29,7 @@ const paperImages = {
   10: chronos,
   11: agenticJackal,
   12: askEarly,
+  13: grepAllYouNeed,
 };
 
 const conferenceVenuePapers = [1, 3, 4, 5, 6, 9];
@@ -99,13 +101,15 @@ const FeaturedCard = ({ paper }) => {
 
   return (
     <div className="bg-[#0d1b2a] rounded-xl border border-gray-700/50 overflow-hidden transition-all duration-300">
-      <div className="bg-[#0a1421] flex items-center justify-center overflow-hidden aspect-[4/3]">
-        <img
-          src={paperImages[paper.id]}
-          alt={paper.title}
-          className="w-full h-full object-contain p-3"
-        />
-      </div>
+      {paperImages[paper.id] && (
+        <div className="bg-[#0a1421] flex items-center justify-center overflow-hidden aspect-[4/3]">
+          <img
+            src={paperImages[paper.id]}
+            alt={paper.title}
+            className="w-full h-full object-contain p-3"
+          />
+        </div>
+      )}
       <div className="p-5">
         <h3 className="text-base font-bold text-white leading-snug mb-2">
           {paper.title}

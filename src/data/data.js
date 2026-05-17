@@ -1,5 +1,18 @@
 export const researchPapers = [
     {
+        id: 13,
+        title: "Is Grep All You Need? How Agent Harnesses Reshape Agentic Search",
+        authors: "Sahil Sen, Akhil Kasturi, Elias Lumer, Anmol Gulati, Vamse Kumar Subbiah",
+        abstract: "This paper reports an empirical study comparing grep and vector retrieval on a 116-question sample from LongMemEval, using a custom agent harness (Chronos) and provider-native CLI harnesses (Claude Code, Codex, and Gemini CLI), for both inline tool results and file-based tool results. Across harnesses, grep generally yields higher accuracy than vector retrieval; at the same time, overall scores depend strongly on which harness and tool-calling style is used, even when the underlying conversation data are the same.",
+        arxivUrl: "https://arxiv.org/abs/2605.15184",
+        pdfUrl: "https://arxiv.org/pdf/2605.15184",
+        date: "May 2026",
+        sortDate: "2026-05",
+        tags: ["Retrieval", "Agentic Search", "RAG", "LLM"],
+        category: "Retrieval",
+        venue: "arXiv preprint",
+    },
+    {
         id: 12,
         title: "Ask Early, Ask Late, Ask Right: When Does Clarification Timing Matter for Long-Horizon Agents?",
         authors: "Anmol Gulati, Hariom Gupta, Elias Lumer, Sahil Sen, Vamse Kumar Subbiah",
